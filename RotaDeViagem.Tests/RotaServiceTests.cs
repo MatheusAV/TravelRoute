@@ -30,7 +30,7 @@ namespace RotaDeViagem.Tests
             _rotaRepositoryMock.Setup(repo => repo.GetAllRotasAsync()).ReturnsAsync(rotas);
 
             var result = await _rotaService.MelhorRotaAsync("GRU", "CDG");
-            Assert.Contains("GRU - BRC - SCL - ORL - CDG ao custo de $40", result);
+            Assert.Contains("GRU - BRC - SCL - ORL - CDG ao custo de $40", result.Data);
         }
     }
 }
