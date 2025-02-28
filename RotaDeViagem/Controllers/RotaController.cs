@@ -41,8 +41,7 @@ public class RotaController : ControllerBase
     /// <param name="origem">A localidade de origem da rota.</param>
     /// <param name="destino">A localidade de destino da rota.</param>
     /// <response code="200">Rota mais barata encontrada com sucesso.</response>
-    /// <response code="400">Erro ao buscar a rota mais barata.</response>
-    [HttpGet("BuscaMelhorRota")]
+    /// <response code="400">Erro ao buscar a rota mais barata.</response>    
     [SwaggerResponse(200, "Rota mais barata encontrada com sucesso", typeof(ServiceResponse<string>))]
     [SwaggerResponse(400, "Erro ao buscar a rota mais barata")]
     [HttpGet("melhor-rota")]
@@ -62,7 +61,7 @@ public class RotaController : ControllerBase
     public async Task<IActionResult> BuscarRotas()
     {
         var response = await _rotaService.BuscaRotasAsync();
-        return response.Success ? Ok(response.Data) : BadRequest(response.Message);
+        return response.Success ? Ok(response) : BadRequest(response.Message);
     }
 
     /// <summary>
@@ -77,7 +76,7 @@ public class RotaController : ControllerBase
     public async Task<IActionResult> BuscarRota(int id)
     {
         var response = await _rotaService.BuscaRota(id);
-        return response.Success ? Ok(response.Data) : NotFound(response.Message);
+        return response.Success ? Ok(response) : NotFound(response.Message);
     }
 
     /// <summary>

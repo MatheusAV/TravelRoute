@@ -8,7 +8,7 @@ namespace RotaDeViagem.Application.Interfaces
     /// </summary>
     public interface IRotaService
     {
-        Task<string> MelhorRotaAsync(string origem, string destino);        
+        Task<ServiceResponse<string>> MelhorRotaAsync(string origem, string destino);        
         Task<ServiceResponse<Rota>> InseriRota(Rota rota);
         Task<ServiceResponse<List<Rota>>> BuscaRotasAsync();
         Task<ServiceResponse<Rota>> BuscaRota(int id);

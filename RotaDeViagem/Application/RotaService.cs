@@ -24,12 +24,43 @@ namespace RotaDeViagem.Application
         /// <param name="origem">Origem da viagem.</param>
         /// <param name="destino">Destino da viagem.</param>
         /// <returns>Uma string contendo a melhor rota e seu custo total.</returns>
-        public async Task<string> MelhorRotaAsync(string origem, string destino)
+        public async Task<ServiceResponse<string>> MelhorRotaAsync(string origem, string destino)
         {
             var rotas = await _rotaRepository.GetAllRotasAsync();
+
+            if (rotas == null || !rotas.Any())
+            {
+                return new ServiceResponse<string>
+                {
+                    Data = null,
+                    Success = false,
+                    Message = "Nenhuma rota disponível no momento."
+                };
+            }
+
             var caminhos = EncontrarCaminhos(rotas, origem, destino);
-            var melhorRota = caminhos.OrderBy(c => c.CustoTotal).FirstOrDefault();
-            return melhorRota.Caminho != null && melhorRota.Caminho.Count > 0 ? string.Join(" - ", melhorRota.Caminho) + $" ao custo de ${melhorRota.CustoTotal}" : "Rota não encontrada";
+
+            if (caminhos == null || !caminhos.Any())
+            {
+                return new ServiceResponse<string>
+                {
+                    Data = null,
+                    Success = false,
+                    Message = "Rota não encontrada."
+                };
+            }
+
+            var melhoresRotas = caminhos
+                .OrderBy(c => c.CustoTotal)
+                .Select((c, index) => $"{index + 1}. {string.Join(" - ", c.Caminho)} ao custo de ${c.CustoTotal}")
+                .ToList();
+
+            return new ServiceResponse<string>
+            {
+                Data = string.Join("\n", melhoresRotas),
+                Success = true,
+                Message = "Rotas encontradas com sucesso."
+            };
         }
 
         private List<(List<string> Caminho, decimal CustoTotal)> EncontrarCaminhos(List<Rota> rotas, string origem, string destino)
@@ -62,9 +93,7 @@ namespace RotaDeViagem.Application
         /// <summary>
         /// Adiciona uma nova rota ao sistema.
         /// </summary>
-        /// <param name="origem">Origem da rota.</param>
-        /// <param name="destino">Destino da rota.</param>
-        /// <param name="custo">Custo da rota.</param>
+        /// <param name="rota"> rota.</param>
         public async Task<ServiceResponse<Rota>> InseriRota(Rota rota)
         {
             try
