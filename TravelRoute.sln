@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35806.99 d17.13
+VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RotaDeViagem", "RotaDeViagem\RotaDeViagem.csproj", "{EA609267-4D7D-4F63-9251-B37B8079FB8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RotaDeViagem.Tests", "RotaDeViagem.Tests\RotaDeViagem.Tests.csproj", "{AF57FDB5-4C73-416F-92E1-C7D64B1D138F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{7CEBC2CA-7B8F-4E2C-9DC0-F66972848A92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +21,17 @@ Global
 		{EA609267-4D7D-4F63-9251-B37B8079FB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA609267-4D7D-4F63-9251-B37B8079FB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA609267-4D7D-4F63-9251-B37B8079FB8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF57FDB5-4C73-416F-92E1-C7D64B1D138F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF57FDB5-4C73-416F-92E1-C7D64B1D138F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF57FDB5-4C73-416F-92E1-C7D64B1D138F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF57FDB5-4C73-416F-92E1-C7D64B1D138F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EA609267-4D7D-4F63-9251-B37B8079FB8C} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{AF57FDB5-4C73-416F-92E1-C7D64B1D138F} = {7CEBC2CA-7B8F-4E2C-9DC0-F66972848A92}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1BC8980F-5939-42BC-8F89-A6CC7C3EAB5B}
