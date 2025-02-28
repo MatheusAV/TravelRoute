@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using RotaDeViagem;
 using RotaDeViagem.Infrastructure.Context;
@@ -38,6 +39,8 @@ builder.Services.AddSwaggerGen(options =>
     {
         options.IncludeXmlComments(xmlPath);
     }
+
+    options.MapType<string>(() => new OpenApiSchema { Default = new OpenApiString("") });
 });
 
 DependencyInjection.Register(builder.Services);

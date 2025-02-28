@@ -137,15 +137,36 @@ namespace RotaDeViagem.Application
         {
             try
             {
-                await _rotaRepository.UpdateAsync(rota);
-                return new ServiceResponse<Rota> { Data = rota, Success = true, Message = "Rota atualizada com sucesso." };
-            }
-            catch (Exception)
-            {
+                var rotaExistente = await _rotaRepository.GetByIdAsync(rota.Id);
+                if (rotaExistente == null)
+                {
+                    return new ServiceResponse<Rota> { Data = null, Success = false, Message = "Rota não encontrada." };
+                }
+                
+                rotaExistente.Origem = !string.IsNullOrWhiteSpace(rota.Origem) ? rota.Origem : rotaExistente.Origem;
+                rotaExistente.Destino = !string.IsNullOrWhiteSpace(rota.Destino) ? rota.Destino : rotaExistente.Destino;
+                rotaExistente.Custo = rota.Custo > 0 ? rota.Custo : rotaExistente.Custo;
 
-                return new ServiceResponse<Rota> { Data = null, Success = false, Message = "Erro ao atualizar a rota." };
+                await _rotaRepository.UpdateAsync(rotaExistente);
+
+                return new ServiceResponse<Rota>
+                {
+                    Data = rotaExistente,
+                    Success = true,
+                    Message = "Rota atualizada com sucesso."
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ServiceResponse<Rota>
+                {
+                    Data = null,
+                    Success = false,
+                    Message = $"Erro ao atualizar a rota: {ex.Message}"
+                };
             }
         }
+
 
         public async Task<ServiceResponse<Rota>> DeletaRota(Rota rota)
         {
