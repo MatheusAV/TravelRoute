@@ -1,9 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using Moq;
 using RotaDeViagem.Application;
 using RotaDeViagem.Domain.Entities;
-using RotaDeViagem.Infrastructure;
-using RotaDeViagem.Infrastructure.Context;
 using RotaDeViagem.Infrastructure.Interfaces;
 
 namespace RotaDeViagem.Tests
