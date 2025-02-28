@@ -1,0 +1,36 @@
+Decisões de Design Adotadas
+Arquitetura em Camadas (Layered Architecture)
+
+Separa responsabilidades para facilitar manutenção e escalabilidade.
+Camadas:
+Application: Contém serviços e regras de negócio.
+Domain: Define entidades e modelos de dados.
+Infrastructure: Gerencia persistência de dados e acesso ao banco.
+Controllers: Expõe endpoints da API.
+Uso de ORM (Entity Framework Core)
+
+Facilita a persistência no SQL Server e abstrai operações de banco.
+Migrations são usadas para versionamento do esquema do banco.
+Princípios SOLID
+
+Injeção de Dependência (DI) para desacoplamento.
+Uso de Interfaces (IRotaService, IRotaRepository) para facilitar testes e substituições.
+API RESTful
+
+Rotas bem definidas com verbos HTTP corretos (GET, POST, PUT, DELETE).
+Swagger integrado para documentação e testes.
+Algoritmo de Melhor Rota
+
+Implementado sem Dijkstra, utilizando busca recursiva para calcular a rota mais barata.
+As rotas são ordenadas pelo menor custo.
+Testes Automatizados
+
+Criado projeto RotaDeViagem.Tests com xUnit.
+Cobertura de serviços (RotaServiceTests.cs) e repositórios (RotaRepositoryTests.cs).
+Padrões de Design Utilizados
+Repository Pattern
+Implementado no RotaRepository.cs para abstrair a persistência e facilitar substituição do ORM.
+Service Layer Pattern
+RotaService.cs concentra a lógica de negócio, mantendo os controllers mais enxutos.
+Factory Pattern (implícito pelo DI)
+O Entity Framework Core usa Factory para gerenciar DbContext.
