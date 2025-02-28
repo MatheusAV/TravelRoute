@@ -1,6 +1,4 @@
 ﻿using RotaDeViagem.Domain.Entities;
-using RotaDeViagem.Domain.MensageResponse;
-using System.Threading.Tasks;
 
 namespace RotaDeViagem.Infrastructure.Interfaces
 {
